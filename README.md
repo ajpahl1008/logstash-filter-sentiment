@@ -1,5 +1,5 @@
 # logstash-filter-sentiment (beta)
-Sentiment Filter for Logstash Pipelines based on 7compass' sentiment library for ruby.  You can checkout their code here: https://github.com/7compass/sentimental
+A basic sentiment analysis filter for Logstash Pipelines based on 7compass' sentiment library for ruby.  You can checkout their code here: https://github.com/7compass/sentimental
 
 # Prerequisites
 git, ruby
