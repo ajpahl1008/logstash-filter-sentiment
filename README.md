@@ -43,7 +43,7 @@ I am very Happy
           "sentiment" => :positive,
     "sentiment_score" => 0.4063,
          "@timestamp" => 2018-01-16T18:20:42.791Z,
-               "host" => "AJ-MacBook-Pro-5.local",
+               "host" => "mylaptop.local",
            "@version" => "1"
 }
 ```
@@ -55,7 +55,7 @@ I am so sad
           "sentiment" => :negative,
     "sentiment_score" => -0.33330000000000004,
          "@timestamp" => 2018-01-16T18:21:13.187Z,
-               "host" => "AJ-MacBook-Pro-5.local",
+               "host" => "mylaptop.local",
            "@version" => "1"
 }
 ```
@@ -67,7 +67,7 @@ meh
           "sentiment" => :neutral,
     "sentiment_score" => 0.0,
          "@timestamp" => 2018-01-16T18:21:34.473Z,
-               "host" => "AJ-MacBook-Pro-5.local",
+               "host" => "mylaptop.local",
            "@version" => "1"
 }
 ```
