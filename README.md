@@ -18,12 +18,26 @@ cd ${LOGSTASH_DIR}
 bin/logstash-plugin install ${PATH_TO_GEM}
 ```
 
-# Example Logstash Config
+# Example #1 Default Logstash Config
+In this example, the sentiment defaults to the message field in the event.
 ```
 input {...}
 
 filter {
-  sentiment { }  # That's all folks!!!
+  sentiment { }
+}
+
+output {...}
+
+```
+
+# Example #2 Specify a field for analysis
+In this example, the sentiment is targeted on the title field.
+```
+input {...}
+
+filter {
+  sentiment { target_field => "title" }
 }
 
 output {...}
@@ -33,41 +47,50 @@ output {...}
 # Example output (running in debug)
 Starting logstash (with plugin installed) in debug mode
 ```
-bin/logstash -e 'input { stdin{} } filter { sentiment {} } output {stdout { codec => rubydebug }}'
+bin/logstash -e 'input { stdin{codec => json_lines} } filter { sentiment { target_field => "title"} } output {stdout { codec => rubydebug }}'
 ```
-Type in a string ex: "I am very Happy"
+Manually enter a JSON Doc: {"title":"I'm very happy with this"} (Hit enter)
 ```
-I am very Happy
 {
-            "message" => "I am very Happy",
+           "@version" => "1",
           "sentiment" => :positive,
+              "title" => "I'm very happy with this",
     "sentiment_score" => 0.4063,
-         "@timestamp" => 2018-01-16T18:20:42.791Z,
                "host" => "mylaptop.local",
-           "@version" => "1"
+         "@timestamp" => 2018-01-21T19:20:31.459Z
 }
+
 ```
-Type in a string ex: "I am so sad"
+Manually enter a JSON Doc: {"title":"I am so sad"} (Hit enter)
 ```
-I am so sad
+{"title":"I am so sad"}
 {
-            "message" => "I am so sad",
+           "@version" => "1",
           "sentiment" => :negative,
+              "title" => "I am so sad",
     "sentiment_score" => -0.33330000000000004,
-         "@timestamp" => 2018-01-16T18:21:13.187Z,
                "host" => "mylaptop.local",
-           "@version" => "1"
+         "@timestamp" => 2018-01-21T19:21:55.242Z
+}
+
+```
+Manually enter a JSON Doc: {"title":"meh"} (Hit enter)
+```
+{
+           "@version" => "1",
+          "sentiment" => :neutral,
+              "title" => "meh",
+    "sentiment_score" => 0.0,
+               "host" => "mylaptop.local",
+         "@timestamp" => 2018-01-21T19:23:17.753Z
 }
 ```
-Type in a string ex: meh
+Try entering a blank doc: { } (Hit enter)
 ```
-meh
+logstash-filter-sentiment: WARNING: target_field 'title' does not exist in event
 {
-            "message" => "meh",
-          "sentiment" => :neutral,
-    "sentiment_score" => 0.0,
-         "@timestamp" => 2018-01-16T18:21:34.473Z,
-               "host" => "mylaptop.local",
-           "@version" => "1"
+      "@version" => "1",
+          "host" => "mylaptop.local",
+    "@timestamp" => 2018-01-21T19:24:40.230Z
 }
 ```
