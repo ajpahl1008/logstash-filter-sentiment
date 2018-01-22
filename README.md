@@ -53,7 +53,7 @@ Manually enter a JSON Doc: {"title":"I'm very happy with this"} (Hit enter)
 ```
 {
            "@version" => "1",
-          "sentiment" => :positive,
+          "sentiment" => "positive",
               "title" => "I'm very happy with this",
     "sentiment_score" => 0.4063,
                "host" => "mylaptop.local",
@@ -66,7 +66,7 @@ Manually enter a JSON Doc: {"title":"I am so sad"} (Hit enter)
 {"title":"I am so sad"}
 {
            "@version" => "1",
-          "sentiment" => :negative,
+          "sentiment" => "negative",
               "title" => "I am so sad",
     "sentiment_score" => -0.33330000000000004,
                "host" => "mylaptop.local",
@@ -78,7 +78,7 @@ Manually enter a JSON Doc: {"title":"meh"} (Hit enter)
 ```
 {
            "@version" => "1",
-          "sentiment" => :neutral,
+          "sentiment" => "neutral",
               "title" => "meh",
     "sentiment_score" => 0.0,
                "host" => "mylaptop.local",
